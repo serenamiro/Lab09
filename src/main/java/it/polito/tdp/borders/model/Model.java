@@ -106,14 +106,14 @@ public class Model {
 		List<Country> daVisitare = new ArrayList<Country>();
 		List<Country> visitati = new ArrayList<Country>();
 		List<Country> temp;
+		List<Country> daRitornare = new ArrayList<Country>();
 		
 		daVisitare.add(c);
 		
-		Iterator<Country> iter = daVisitare.iterator();
-		
-		while(iter.hasNext()) {
+		int i = 0;
+		while(!daVisitare.isEmpty()) {
 			// 1. ESTRARRE UN NODO
-			Country cc = iter.next();
+			Country cc = daVisitare.get(i);
 			
 			temp = new ArrayList<Country>(Graphs.neighborListOf(this.grafo, cc));
 			
@@ -122,14 +122,20 @@ public class Model {
 				if(!visitati.contains(tempC)) {
 					// credo che l'eccezione venga scatenata per questa operazione
 					daVisitare.add(tempC);
+					i++;
 				}
 			}
 			visitati.add(cc);
-			//daVisitare.remove(cc);
-			iter.remove();
+			daVisitare.remove(cc);
+			i--;
 		}
 		
-		return visitati;
+		for(Country co : visitati) {
+			if(!daRitornare.contains(co)) {
+				daRitornare.add(co);
+			}
+		}
+		return daRitornare;
 	}
 
 }

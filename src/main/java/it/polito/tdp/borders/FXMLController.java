@@ -59,10 +59,12 @@ public class FXMLController {
     	List<Country> vicini = this.model.getVicini2(c);
     	*/
     	
-    	List<Country> vicini = this.model.getNodiRaggiungibili(c);
+    	//List<Country> vicini = this.model.getNodiRaggiungibili(c);
+    	List<Country> vicini = this.model.getNodiRaggiungibiliIterativamente(c);
     	if(vicini==null) {
     		txtResult.appendText("La nazione selezionata non ha vicini.");
     	} else {
+    		txtResult.appendText("Risultati trovati: "+vicini.size()+"\n");
     		String s="";
     		for(Country c2 : vicini) {
     			s += c2.getNome()+"\n";

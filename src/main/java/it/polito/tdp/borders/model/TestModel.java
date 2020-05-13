@@ -1,5 +1,7 @@
 package it.polito.tdp.borders.model;
 
+import java.util.List;
+
 public class TestModel {
 
 	public static void main(String[] args) {
@@ -8,8 +10,12 @@ public class TestModel {
 
 		System.out.println("TestModel -- TODO");
 		
-//		System.out.println("Creo il grafo relativo al 2000");
-//		model.createGraph(2000);
+		
+		System.out.println("Creo il grafo relativo al 1900");
+		model.creaGrafo(1900);
+		
+		System.out.println("Vertici: "+model.verNumber());
+		System.out.println("Archi: "+model.edgeNumber());
 		
 //		List<Country> countries = model.getCountries();
 //		System.out.format("Trovate %d nazioni\n", countries.size());
@@ -19,6 +25,10 @@ public class TestModel {
 //		Map<Country, Integer> stats = model.getCountryCounts();
 //		for (Country country : stats.keySet())
 //			System.out.format("%s %d\n", country, stats.get(country));		
+		
+		Country c = model.getIdMap().get(390);
+		List<Country> vicini = model.getNodiRaggiungibiliIterativamente(c);
+		System.out.println(vicini.toString());
 		
 	}
 
